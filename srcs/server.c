@@ -6,7 +6,7 @@
 /*   By: mmita <mmita@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:43:35 by mmita             #+#    #+#             */
-/*   Updated: 2023/05/02 22:33:48 by mmita            ###   ########.fr       */
+/*   Updated: 2023/05/06 18:45:07 by mmita            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ se obtiene el PID del cliente para mandarle una señal
 -> es el operador de acceso a miembros de estructura a través de punteros.
 */
 	kill(pid, SIGUSR2);
-	//manda la señal
+	//manda la señal a SIGUSR2
 	bit--;
 	//deja de leer y vuelve al cliente despues de mandar SIGUSR2
 	if (bit < 0)
@@ -73,9 +73,13 @@ int	main(void)
 	ft_printf(" que quieras que muestre el servidor\n");
 	ft_printf("Ejemplo: ./client %d \"hola\"\n", pid);
 	dato.sa_flags = SA_SIGINFO;
+	//obtiene quien ha mandado la señal
 	dato.sa_sigaction = signal_control;
+	//ejecuta la respuesta a esta señal con la función signal_control
 	sigaction(SIGUSR1, &dato, NULL);
 	sigaction(SIGUSR2, &dato, NULL);
+	//espera a recibir SIGUSR
 	while (1)
 		pause();
+	//bucle infinito hasta que el cliente le pare
 }
