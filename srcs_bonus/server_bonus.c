@@ -6,12 +6,11 @@
 /*   By: mmita <mmita@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 20:06:22 by mmita             #+#    #+#             */
-/*   Updated: 2023/05/06 20:08:20 by mmita            ###   ########.fr       */
+/*   Updated: 2023/05/06 20:25:08 by mmita            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
-
 
 void	signal_control(int signal, siginfo_t *info, void *param)
 
@@ -25,7 +24,6 @@ void	signal_control(int signal, siginfo_t *info, void *param)
 		c = c | (1 << bit);
 	if (pid == 0)
 		pid = info -> si_pid;
-
 	kill(pid, SIGUSR2);
 	bit--;
 	if (bit < 0)
