@@ -6,7 +6,7 @@
 #    By: mmita <mmita@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/30 16:18:16 by mmita             #+#    #+#              #
-#    Updated: 2023/05/06 20:05:06 by mmita            ###   ########.fr        #
+#    Updated: 2023/05/06 20:18:08 by mmita            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,29 +38,30 @@ SRCS_SERVER_B = ./srcs_bonus/server_bonus.c
 CLIENT_B = client_bonus
 SRCS_CLIENT_B = ./srcs_bonus/client_bonus.c
 
-all: $(SERVER) $(CLIENT)
+all: $(SERVER) $(CLIENT) $(SERVER_B) $(CLIENT_B)
 
 $(SERVER): $(LIBFT) $(PRINTF) $(SRCS_SERVER)
 	@$(CC) $(CFLAGS) $(INC) $(LIBFT)  $(PRINTF) -o $(SERVER) $(SRCS_SERVER)
-	@echo "\n $(GREEN) El Servidor está listo. Ejecútelo con el comando ./server y siga las instrucciones.$(RESET) ✅\n"
+	@echo "\n $(GREEN)El Servidor está listo. Ejecútelo con el comando ./server y siga las instrucciones.$(RESET) ✅\n"
 
 $(CLIENT): $(LIBFT) $(PRINTF) $(SRCS_CLIENT)
 	@$(CC) $(CFLAGS) $(INC) $(LIBFT) $(PRINTF) -o $(CLIENT) $(SRCS_CLIENT)
-	@echo "\n $(GREEN) El Cliente está listo.$(RESET) ✅\n"
+	@echo "\n $(GREEN)El Cliente está listo.$(RESET) ✅\n"
 
 $(SERVER_B): $(LIBFT) $(PRINTF) $(SRCS_SERVER_B)
 	@$(CC) $(CFLAGS) $(INC) $(LIBFT) $(PRINTF) -o $(SERVER_B) $(SRCS_SERVER_B)
-	@echo "\n $(GREEN) El Servidor Bunus está listo. Ejecútelo con el comando ./server_bonus y siga las instrucciones.$(RESET) ✅\n"
+	@echo "\n $(GREEN)El Servidor Bunus está listo. Ejecútelo con el comando ./server_bonus y siga las instrucciones.$(RESET) ✅\n"
 
 $(CLIENT_B): $(LIBFT) $(PRINTF) $(SRCS_CLIENT_B)
 	@$(CC) $(CFLAGS) $(INC) $(LIBFT) $(PRINTF) -o $(CLIENT_B) $(SRCS_CLIENT_B)
-	@echo "\n $(GREEN) El Cliente está listo.$(RESET) ✅\n"
+	@echo "\n $(GREEN)El Cliente Bonus está listo.$(RESET) ✅\n"
 
 $(LIBFT):
 	@make -C libft --silent
-	@echo "\n $(GREEN)Libft (¿recuerdas lo difícil que nos resultó terminarla?) está lista.$(RESET) ✅\n"
+	@echo "\n $(GREEN)Libft está lista.$(RESET) ✅\n"
 $(PRINTF):
 	@make -C printf --silent
+	@echo "\n $(GREEN)Printf está lista.$(RESET) ✅\n"
 clean:
 	@make -C libft clean --silent
 	@make -C printf clean --silent
