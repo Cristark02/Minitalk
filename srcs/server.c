@@ -6,11 +6,12 @@
 /*   By: mmita <mmita@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:43:35 by mmita             #+#    #+#             */
-/*   Updated: 2023/04/30 18:54:03 by mmita            ###   ########.fr       */
+/*   Updated: 2023/05/02 22:33:48 by mmita            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
+
 
 void	signal_control(int signal, siginfo_t *info, void *param)
 /*
@@ -19,6 +20,7 @@ info: Es un puntero a una estructura siginfo_t, que contiene información adicio
 Por ejemplo, la identificación del proceso que envió la señal.
 param: Es un puntero a una estructura ucontext_t, que contiene información sobre el estado actual del proceso.
 */
+
 {
 	static char	c = 0;
 	static int	bit = 7;
@@ -63,17 +65,17 @@ se obtiene el PID del cliente para mandarle una señal
 int	main(void)
 {
 	int					pid;
-	struct sigaction	data;
+	struct sigaction	dato;
 
 	pid = getpid();
 	ft_printf("Ejecuta el cliente en otra ventana con el comando ./client");
 	ft_printf(" seguido del PID: %d y el mensaje entre comillas", pid);
 	ft_printf(" que quieras que muestre el servidor\n");
 	ft_printf("Ejemplo: ./client %d \"hola\"\n", pid);
-	data.sa_flags = SA_SIGINFO;
-	data.sa_sigaction = signal_control;
-	sigaction(SIGUSR1, &data, NULL);
-	sigaction(SIGUSR2, &data, NULL);
+	dato.sa_flags = SA_SIGINFO;
+	dato.sa_sigaction = signal_control;
+	sigaction(SIGUSR1, &dato, NULL);
+	sigaction(SIGUSR2, &dato, NULL);
 	while (1)
 		pause();
 }
